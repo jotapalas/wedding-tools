@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.postgres.fields import ArrayField
 
 from core.models.abstract import UUIDModel, TimestampModel
 
@@ -30,6 +31,14 @@ class Guest(UUIDModel, TimestampModel):
         YOUNG_ADULT = 2, _('Young adult')
         ADULT = 3, _('Adult')
         ELDER = 4, _('Elder')
+
+    class AllergiesChoices(models.TextChoices):
+        GLUTEN = 'gluten', _('Gluten')
+        LACTOSE = 'lactose', _('Lactose')
+        NUTS = 'nuts', _('Nuts')
+        SEAFOOD = 'seafood', _('Seafood'),
+        SOY = 'soy', _('Soy')
+        SUGAR = 'sugar', _('Sugar')
 
     first_name = models.CharField(
         max_length=32,
@@ -118,6 +127,21 @@ class Guest(UUIDModel, TimestampModel):
         verbose_name=_('Is vegetarian'),
         default=False
     )
+    common_allergies = ArrayField(
+        models.CharField(
+            verbose_name=_('Common allergies'),
+            max_length=8,
+            choices=AllergiesChoices.choices,
+            blank=True,
+        ),
+        default=list,
+        blank=True,
+    )
+    other_allergies = models.TextField(
+        verbose_name=_('Other allergies'),
+        blank=True,
+        default=''
+    )
 
     class Meta:
         verbose_name = _('Guest')
@@ -138,8 +162,12 @@ class Guest(UUIDModel, TimestampModel):
         return self.group.guests.all() if self.group else []
     
     def save(self, *args, **kwargs):
+        if self.attending == self.AttendingStatusChoices.YES:
+            self.attending_probability = 1
+        if self.attending == self.AttendingStatusChoices.NO:
+            self.attending_probability = 0
+        
         prev = Guest.objects.filter(pk=self.pk).first()
-
         super().save(*args, **kwargs)
 
         # Update previous group if it's different
