@@ -41,9 +41,12 @@ class GuestSearchSerializerTestCase(TestCase):
 
     def test_search_with_no_data(self):
         serializer = GuestSearchSerializer(data={})
-        self.assertTrue(serializer.is_valid(), serializer.errors)
-        with self.assertRaisesMessage(ValidationError, 'No search data provided'):
-            serializer.search()
+        self.assertFalse(serializer.is_valid(), serializer.errors)
+
+    def test_search_with_no_data_raise_exception(self):
+        serializer = GuestSearchSerializer(data={})
+        with self.assertRaises(ValidationError):
+            serializer.is_valid(raise_exception=True)
 
     def test_with_incomplete_first_name(self):
         serializer = GuestSearchSerializer(data={

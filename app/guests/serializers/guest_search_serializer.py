@@ -14,10 +14,13 @@ class GuestSearchSerializer(serializers.Serializer):
             'nickname',
         )
     
-    def search(self):
-        if not self.validated_data:
+    def validate(self, data):
+        if not data:
             raise serializers.ValidationError('No search data provided')
         
+        return super().validate(data)
+
+    def search(self):
         filters = {
             f'{key}__icontains': value for key, value in self.validated_data.items()
         }
