@@ -159,7 +159,7 @@ class Guest(UUIDModel, TimestampModel):
     
     @property
     def same_group_guests(self):
-        return self.group.guests.all() if self.group else []
+        return self.group.guests.exclude(pk=self.pk) if self.group else []
     
     def save(self, *args, **kwargs):
         if self.attending == self.AttendingStatusChoices.YES:

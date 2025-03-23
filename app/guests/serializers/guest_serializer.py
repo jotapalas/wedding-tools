@@ -3,7 +3,7 @@ from rest_framework import serializers
 from guests.models import Guest
 
 
-class GuestSerializer(serializers.ModelSerializer):
+class GuestLiteSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(read_only=True)
     attending = serializers.ChoiceField(
         choices=[
@@ -27,3 +27,9 @@ class GuestSerializer(serializers.ModelSerializer):
             'common_allergies',
             'other_allergies',
         )
+
+class GuestSerializer(GuestLiteSerializer):
+    same_group_guests = GuestLiteSerializer(many=True, read_only=True)
+
+    class Meta(GuestLiteSerializer.Meta):
+        fields = GuestLiteSerializer.Meta.fields + ('same_group_guests',)
