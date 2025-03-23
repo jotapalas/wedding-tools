@@ -1,2 +1,2 @@
-from .date_logged_model import DateLoggedModel
+from .timestamp_model import TimestampModel
 from .uuid_model import UUIDModel
