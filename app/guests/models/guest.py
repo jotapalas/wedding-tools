@@ -33,32 +33,32 @@ class Guest(UUIDModel, TimestampModel):
 
     first_name = models.CharField(
         max_length=32,
-        help_text=_('First name')
+        verbose_name=_('First name')
     )
     last_name = models.CharField(
         max_length=32,
-        help_text=_('Last name')
+        verbose_name=_('Last name')
     )
     nickname = models.CharField(
         max_length=16,
-        help_text=_('Nickname'),
+        verbose_name=_('Nickname'),
         blank=True,
         default=''
     )
     email = models.EmailField(
         max_length=64,
-        help_text=_('Email'),
+        verbose_name=_('Email'),
         blank=True,
         default=''
     )
     phone = models.CharField(
         max_length=16,
-        help_text=_('Phone'),
+        verbose_name=_('Phone'),
         blank=True,
         default=''
     )
     attending = models.IntegerField(
-        help_text=_('Is attending?'),
+        verbose_name=_('Is attending?'),
         choices=AttendingStatusChoices.choices,
         default=AttendingStatusChoices.DIDNT_RESPOND,
     )
@@ -68,7 +68,8 @@ class Guest(UUIDModel, TimestampModel):
         'GuestGroup',
         on_delete=models.PROTECT,
         related_name='guests',
-        help_text=_('Guest group'),
+        verbose_name=_('Group'),
+        help_text=_('Guest group, if any'),
         null=True,
         blank=True,
     )
@@ -80,22 +81,24 @@ class Guest(UUIDModel, TimestampModel):
         default=''
     )
     invited_by = models.IntegerField(
+        verbose_name=_('Invited by'),
         help_text=_('Who invited the guest'),
         choices=InvitedByChoices.choices,
         default=InvitedByChoices.BOTH
     )
     relationship = models.IntegerField(
+        verbose_name=_('Relationship'),
         help_text=_('Relationship with the couple'),
         choices=RelationshipChoices.choices,
         default=RelationshipChoices.OTHER
     )
     age_group = models.IntegerField(
-        help_text=_('Age group'),
+        verbose_name=_('Age group'),
         choices=AgeGroupChoices.choices,
         default=AgeGroupChoices.ADULT
     )
     attending_probability = models.FloatField(
-        help_text=_('Probability of attending'),
+        verbose_name=_('Probability of attending'),
         default=0.0,
         choices=[
             (i/10, f'{round(100 * i/10)}%')
@@ -103,15 +106,16 @@ class Guest(UUIDModel, TimestampModel):
         ]
     )
     open_bar = models.BooleanField(
+        verbose_name=_('Open bar'),
         help_text=_('Will attend to the open bar'),
         default=True
     )
     is_vegan = models.BooleanField(
-        help_text=_('Is vegan'),
+        verbose_name=_('Is vegan'),
         default=False
     )
     is_vegetarian = models.BooleanField(
-        help_text=_('Is vegetarian'),
+        verbose_name=_('Is vegetarian'),
         default=False
     )
 
@@ -157,7 +161,7 @@ class GuestGroup(UUIDModel, TimestampModel):
     """
     name = models.CharField(
         max_length=64,
-        help_text=_('Group name'),
+        verbose_name=_('Group name'),
         null=True,
         blank=True
     )
