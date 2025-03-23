@@ -41,6 +41,7 @@ class GuestAdmin(admin.ModelAdmin):
                 'email',
                 'phone',
                 'attending',
+                'attending_probability',
                 'group',
             )
         }),
@@ -53,6 +54,8 @@ class GuestAdmin(admin.ModelAdmin):
                 'open_bar',
                 'is_vegan',
                 'is_vegetarian',
+                'common_allergies',
+                'other_allergies',
             )
         }),
         (_('System fields'), {
@@ -69,7 +72,6 @@ class GuestAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at',
     )
-
 
 
 class GuestInline(admin.TabularInline):
