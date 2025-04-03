@@ -9,10 +9,12 @@ class TimestampModel(models.Model):
     """
     created_at = models.DateTimeField(
         auto_now_add=True,
+        verbose_name=_('Created at'),
         help_text=_('Date and time where this record was created.')
     )
     updated_at = models.DateTimeField(
         auto_now=True,
+        verbose_name=_('Updated at'),
         help_text=_('Date and time of this record last edition.')
     )
 
