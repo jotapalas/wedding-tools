@@ -7,7 +7,7 @@ services:
     build: ./frontend
     command: npm start
     volumes:
-      - ./frontend/:/usr/src/frontend/
+      - ./frontend/:/usr/src/app/
     ports:
       - 3000:3000
     env_file:
@@ -19,7 +19,7 @@ services:
     build: ./backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./backend/:/usr/src/backend/
+      - ./backend/:/usr/src/app/
     ports:
       - 8000:8000
     env_file:
