@@ -11,6 +11,15 @@ from guests.serializers import GuestSerializer
 class GuestView(APIView):
     permission_classes = [AllowAny, ]
 
+    def get(self, request, guest_id):
+        try:
+            guest = Guest.objects.get(pk=guest_id)
+        except (Guest.DoesNotExist, ValidationError):
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = GuestSerializer(guest)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def patch(self, request, guest_id):
         try:
             guest = Guest.objects.get(pk=guest_id)

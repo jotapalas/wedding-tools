@@ -38,7 +38,7 @@ class GuestViewTestCase(APITestCase):
         })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_not_found(self):
+    def test_patch_not_found(self):
         response = self.client.patch(reverse('guests-detail', kwargs={
             'guest_id': 'non-existing'
         }), {
@@ -46,4 +46,15 @@ class GuestViewTestCase(APITestCase):
             'last_name': self.guest.last_name,
             'attending': Guest.AttendingStatusChoices.YES,
         })
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_get(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+        self.assertEqual(response.data.get('id', 'no-id'), str(self.guest.id))
+
+    def test_get_not_found(self):
+        response = self.client.get(reverse('guests-detail', kwargs={
+            'guest_id': 'non-existing'
+        }))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
