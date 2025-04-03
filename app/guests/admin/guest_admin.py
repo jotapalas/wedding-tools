@@ -1,6 +1,7 @@
 from django.contrib import admin
 from guests.models import Guest, GuestGroup
 from django.utils.translation import gettext_lazy as _
+from django.utils.safestring import mark_safe
 
 @admin.register(Guest)
 class GuestAdmin(admin.ModelAdmin):
@@ -63,6 +64,7 @@ class GuestAdmin(admin.ModelAdmin):
                 'id',
                 'created_at',
                 'updated_at',
+                'personalised_url',
             ),
             'classes': ('collapse',),
         }),
@@ -71,7 +73,26 @@ class GuestAdmin(admin.ModelAdmin):
         'id',
         'created_at',
         'updated_at',
+        'personalised_url',
     )
+
+    @admin.display(description=_('Personalised URL'))
+    def personalised_url(self, obj):
+        url = obj.personalised_url
+        btn_id = 'copy-link-btn'
+        return mark_safe(f'''
+            <script type="text/javascript">
+                function copyToClipboard() {{
+                    navigator.clipboard.writeText("{url}").then(() => {{
+                        document.getElementById("{btn_id}").innerHTML = "{_('Copied!')}";
+                    }}).catch(err => {{
+                        console.error("Error copying text: ", err);
+                    }});
+                }}
+            </script>
+            <a href="{url}" target="_blank" rel="noopener noreferrer">{_('Visit')}</a>
+            <a href="#{btn_id}" id="{btn_id}" onClick="copyToClipboard()" class="addlink">{_('Copy to clipboard')}</a>
+        ''')
 
 
 class GuestInline(admin.TabularInline):

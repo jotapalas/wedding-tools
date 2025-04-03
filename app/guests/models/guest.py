@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
@@ -137,7 +139,8 @@ class Guest(UUIDModel, TimestampModel):
         default=list,
         blank=True,
     )
-    other_allergies = models.TextField(
+    other_allergies = models.CharField(
+        max_length=64,
         verbose_name=_('Other allergies'),
         blank=True,
         default=''
@@ -160,6 +163,11 @@ class Guest(UUIDModel, TimestampModel):
     @property
     def same_group_guests(self):
         return self.group.guests.exclude(pk=self.pk) if self.group else []
+    
+    @property
+    def personalised_url(self):
+        base_url = os.getenv('BASE_URL', '')
+        return f'{base_url}?guest_id={self.id.hex}'
     
     def save(self, *args, **kwargs):
         if self.attending == self.AttendingStatusChoices.YES:
