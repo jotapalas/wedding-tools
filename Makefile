@@ -1,4 +1,5 @@
-container_name = wedding-tools-django
+backend_container_name = wedding-tools-django
+frontend_container_name = wedding-tools-frontend
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of:"
@@ -8,7 +9,7 @@ help:
 	@echo "  destroy               Stop the docker containers AND kill volumes"
 	@echo "  logs           	   View output from docker container"
 	@echo "  sh                    Run docker container shell"
-	@echo "  shell                 Run Django shell"
+	@echo "  djshell               Run Django shell"
 	@echo "  makemigrations        Create Django migrations"
 	@echo "  migrate               Migrate database"
 	@echo "  createsuperuser       Create super user"
@@ -32,25 +33,25 @@ logs:
 	docker-compose -f docker-compose.yml logs --tail=100 -f
 
 sh:
-	docker exec -ti $(container_name) sh
+	docker exec -ti $(backend_container_name) sh
 
-shell:
-	docker exec -ti $(container_name) python manage.py shell
+djshell:
+	docker exec -ti $(backend_container_name) python manage.py shell
 
 makemigrations:
-	docker exec -ti $(container_name) python manage.py makemigrations
+	docker exec -ti $(backend_container_name) python manage.py makemigrations
 
 migrate:
-	docker exec -ti $(container_name) python manage.py migrate
+	docker exec -ti $(backend_container_name) python manage.py migrate
 
 createsuperuser:
-	docker exec -ti $(container_name) python manage.py createsuperuser
+	docker exec -ti $(backend_container_name) python manage.py createsuperuser
 
 test:
-	docker exec -ti $(container_name) python manage.py test
+	docker exec -ti $(backend_container_name) python manage.py test
 
 makemessages:
-	docker exec -ti $(container_name) python manage.py makemessages --all
+	docker exec -ti $(backend_container_name) python manage.py makemessages --all
 
 compilemessages:
-	docker exec -ti $(container_name) python manage.py compilemessages
+	docker exec -ti $(backend_container_name) python manage.py compilemessages

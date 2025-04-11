@@ -1,13 +1,25 @@
 version: '3.8'
 
 services:
+  react:
+    container_name: wedding-tools-react
+    image: wedding-tools/react
+    build: ./frontend
+    command: npm start
+    volumes:
+      - ./frontend/:/usr/src/app/
+    ports:
+      - 3000:3000
+    env_file:
+      - ./.env.dev
+
   django:
     container_name: wedding-tools-django
     image: wedding-tools/django
-    build: ./app
+    build: ./backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./app/:/usr/src/app/
+      - ./backend/:/usr/src/app/
     ports:
       - 8000:8000
     env_file:

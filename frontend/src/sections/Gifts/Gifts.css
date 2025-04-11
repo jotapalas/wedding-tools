@@ -1,0 +1,21 @@
+.gifts-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--purple);
+  color: white;
+  padding-bottom: 2rem;
+}
+
+.gifts-content h4 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.gifts-content p {
+    font-size: 1rem;
+    margin: 0.2rem 0;
+    width: 50%;
+    max-width: 800px;
+    text-align: center;
+}
