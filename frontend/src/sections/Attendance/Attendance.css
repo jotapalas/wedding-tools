@@ -1,0 +1,25 @@
+.attendance-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.attendance-content p {
+    font-size: 1rem;
+    margin: 0.1rem 20rem;
+    max-width: 800px;
+}
+
+.attendance-content button {
+    width: 30vw;
+    background-color: var(--purple);
+    color: white;
+    margin: 1.5rem 0;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}

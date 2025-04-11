@@ -19,6 +19,7 @@ class GuestLiteSerializer(serializers.ModelSerializer):
             'id',
             'first_name',
             'last_name',
+            'nickname',
             'email',
             'phone',
             'attending',

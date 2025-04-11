@@ -167,7 +167,7 @@ class Guest(UUIDModel, TimestampModel):
     @property
     def personalised_url(self):
         base_url = os.getenv('BASE_URL', '')
-        return f'{base_url}?guest_id={self.id.hex}'
+        return f'{base_url}?guestId={self.id.hex}'
     
     def save(self, *args, **kwargs):
         if self.attending == self.AttendingStatusChoices.YES:

@@ -1,0 +1,48 @@
+.lineup-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lineup-element.flex-reverse {
+  flex-direction: row-reverse;
+}
+
+.lineup-element div {
+    width: 50%;
+    height: 50vw;
+}
+
+.lineup-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.lineup-text h3 {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+}
+
+.lineup-text h4 {
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+}
+
+.lineup-text p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.lineup-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
