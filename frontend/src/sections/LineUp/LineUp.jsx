@@ -62,6 +62,7 @@ function LineUp() {
       <div className="lineup-content">
         {lineupData.map((item, index) => (
           <LineUpElement
+            key={index}
             time={item.time}
             title={item.title}
             subtitle={item.subtitle}

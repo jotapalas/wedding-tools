@@ -5,17 +5,18 @@
 }
 
 .attendance-content p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: 0.1rem 20rem;
+    width: 60%;
     max-width: 800px;
 }
 
 .attendance-content button {
-    width: 30vw;
+    width: 40vw;
     background-color: var(--purple);
     color: white;
     margin: 1.5rem 0;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
     font-weight: bold;
     padding: 0.8rem;
