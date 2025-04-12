@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   react:
     container_name: wedding-tools-react
     image: wedding-tools/react
     build: ./frontend
-    command: npm start
+    command: npm run dev
     volumes:
       - ./frontend/:/usr/src/app/
     ports:
