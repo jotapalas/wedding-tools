@@ -1,5 +1,5 @@
 .faq-item {
-    width: 50vw;
+    width: 85vw;
     margin: 0.5rem auto;
     padding: 1rem;
     text-align: center;
@@ -16,13 +16,15 @@
 }
 
 .faq-question h4 {
-    font-weight: medium;
-    font-size: 1.2rem;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 400;
     margin: 0.5rem 0;
 }
 
 .faq-question span {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 500;
     color: var(--purple);
 }
 
