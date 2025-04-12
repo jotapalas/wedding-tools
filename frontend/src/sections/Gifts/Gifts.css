@@ -4,7 +4,7 @@
   align-items: center;
   background-color: var(--purple);
   color: white;
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
 }
 
 .gifts-content h4 {
@@ -13,9 +13,9 @@
 }
 
 .gifts-content p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: 0.2rem 0;
-    width: 50%;
+    width: 60%;
     max-width: 800px;
     text-align: center;
 }
