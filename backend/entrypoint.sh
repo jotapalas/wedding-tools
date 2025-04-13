@@ -2,6 +2,9 @@
 
 echo "Waiting for DB..."
 
+set -e
+set -x
+
 while ! nc -z "$SQL_HOST" "$SQL_PORT"; do
   sleep 1
 done
