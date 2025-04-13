@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 function AttendanceForm() {
     const [currentGuest, setCurrentGuest] = useState();
     const [loading, setLoading] = useState(true);
-    const [stage, setStage] = useState(0);
+    const [stage, setStage] = useState(1);
     const [guests, setGuests] = useState([]);
 
     const apiUrl = import.meta.env.VITE_BASE_API_URL;
@@ -45,10 +45,7 @@ function AttendanceForm() {
         return content;
     }
 
-    if (stage === 0) {
-        const nextStage = currentGuest ? 3 : 1;
-        content = <button className="welcome-message" onClick={() => setStage(nextStage)}>Confirma tu asistencia</button>;
-    } else if (stage === 1) {
+    if (stage === 1) {
         const handleSuccess = (data) => {
             setGuests(data);
             setStage(2);
@@ -121,7 +118,6 @@ function AttendanceForm() {
             }}>¿No eres tú?</button>
         </div>;
     } else if (stage === 4) {
-        console.log(currentGuest);
         content = <div className="confirmation-message">
             <h2>Gracias por confirmar tu asistencia, {currentGuest.nickname || currentGuest.first_name}</h2>
             <p>Tu asistencia ha sido registrada.</p>

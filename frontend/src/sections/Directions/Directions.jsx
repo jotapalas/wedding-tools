@@ -9,12 +9,14 @@ function Directions () {
     {
         title: 'La Iglesia',
         name: 'Iglesia de Santa María de la Paz',
-        address: 'C. Bustos Tavera, 15, Casco Antiguo, 41003 Sevilla',
+        address1: 'C. Bustos Tavera, 15, Casco Antiguo',
+        address2: '41003 Sevilla'
     },
     {
         title: 'La Finca',
         name: 'Hacienda El Loreto',
-        address: 'Ramal, Ctra. Umbrete, 510, 41807 Espartinas, Sevilla',
+        address1: 'Ramal, Ctra. Umbrete, 510',
+        address2: ' 41807 Espartinas, Sevilla'
     },
   ]
 
@@ -54,7 +56,8 @@ function Directions () {
                 <div key={index} className="place">
                     <h2>{place.title}</h2>
                     <h3>{place.name}</h3>
-                    <p>{place.address}</p>
+                    <p>{place.address1}</p>
+                    <p>{place.address2}</p>
                 </div>
             ))}
         </div>
