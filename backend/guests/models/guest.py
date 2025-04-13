@@ -34,13 +34,11 @@ class Guest(UUIDModel, TimestampModel):
         ADULT = 3, _('Adult')
         ELDER = 4, _('Elder')
 
-    class AllergiesChoices(models.TextChoices):
-        GLUTEN = 'gluten', _('Gluten')
-        LACTOSE = 'lactose', _('Lactose')
-        NUTS = 'nuts', _('Nuts')
-        SEAFOOD = 'seafood', _('Seafood'),
-        SOY = 'soy', _('Soy')
-        SUGAR = 'sugar', _('Sugar')
+    class SpecialDietChoices(models.TextChoices):
+        VEGETARIAN = 'vegetarian', _('Vegetarian')
+        VEGAN = 'vegan', _('Vegan')
+        CHILD_FOOD = 'child_food', _('Child food')
+        PREGNANT = 'pregnant', _('Pregnant')
 
     first_name = models.CharField(
         max_length=32,
@@ -121,26 +119,15 @@ class Guest(UUIDModel, TimestampModel):
         help_text=_('Will attend to the open bar'),
         default=True
     )
-    is_vegan = models.BooleanField(
-        verbose_name=_('Is vegan'),
-        default=False
-    )
-    is_vegetarian = models.BooleanField(
-        verbose_name=_('Is vegetarian'),
-        default=False
-    )
-    common_allergies = ArrayField(
-        models.CharField(
-            verbose_name=_('Common allergies'),
-            max_length=8,
-            choices=AllergiesChoices.choices,
-            blank=True,
-        ),
-        default=list,
+    special_diet = models.CharField(
+        max_length=16,
+        verbose_name=_('Special diet'),
+        choices=SpecialDietChoices.choices,
         blank=True,
+        default=''
     )
-    other_allergies = models.CharField(
-        max_length=64,
+    allergies = models.CharField(
+        max_length=128,
         verbose_name=_('Other allergies'),
         blank=True,
         default=''
@@ -168,6 +155,14 @@ class Guest(UUIDModel, TimestampModel):
     def personalised_url(self):
         base_url = os.getenv('BASE_URL', '')
         return f'{base_url}?guestId={self.id.hex}'
+
+    @property
+    def is_vegan(self):
+        return self.special_diet == self.SpecialDietChoices.VEGAN
+
+    @property
+    def is_vegetarian(self):
+        return self.special_diet == self.SpecialDietChoices.VEGETARIAN
     
     def save(self, *args, **kwargs):
         if self.attending == self.AttendingStatusChoices.YES:

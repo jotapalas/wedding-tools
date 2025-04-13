@@ -24,8 +24,7 @@ class GuestAdmin(admin.ModelAdmin):
         'invited_by',
         'relationship',
         'age_group',
-        'is_vegan',
-        'is_vegetarian',
+        'special_diet',
         'open_bar',
         'group',
     )
@@ -53,10 +52,8 @@ class GuestAdmin(admin.ModelAdmin):
                 'relationship',
                 'age_group',
                 'open_bar',
-                'is_vegan',
-                'is_vegetarian',
-                'common_allergies',
-                'other_allergies',
+                'special_diet',
+                'allergies',
             )
         }),
         (_('System fields'), {
