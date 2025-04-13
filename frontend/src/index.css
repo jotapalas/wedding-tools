@@ -1,8 +1,26 @@
+@font-face {
+  font-family: 'Tan Meringue';
+  src: url('./fonts/tan-meringue.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Brown Sugar';
+  src: url('./fonts/brown-sugar.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./fonts/montserrat.ttf') format('truetype')
+}
+
 html {
   font-size: 18px;
   --yellow: #f1f692;
-  --purple: #bb92f6;
+  --purple: #cfaefe;/*#bb92f6;*/
+  --red: #ff3131; /*#ec291e;*/
+  --title-font: 'Tan Meringue', sans-serif;
 }
+
 
 body {
   margin: 0;
@@ -12,6 +30,10 @@ body {
   background-color: var(--yellow);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #333;
 }
 
 code {
@@ -19,13 +41,7 @@ code {
     monospace;
 }
 
-@media screen and (max-width: 800px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 768px) {
   html {
     font-size: 8px;
   }

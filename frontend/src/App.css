@@ -1,0 +1,13 @@
+.discoball-container {
+  position: relative;
+  width: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.discoball {
+  position: absolute;
+  width: 40%;
+  transform: translate(175%, -65%) rotate(30deg);
+  opacity: 60%;
+}

@@ -2,7 +2,6 @@ section.claim {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: var(--dark-blue);
 }
 
 .claim-content {
@@ -32,8 +31,13 @@ section.claim {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: left;
-  font-size: 3.5rem;
+  text-align: center;
+  font-size: 2.25rem;
+  line-height: 4rem;
+  text-transform: uppercase;
+  color: var(--red);
+  font-family: var(--title-font);
+  letter-spacing: 0.25rem;
 }
 
 .claim-element.claim-text p {

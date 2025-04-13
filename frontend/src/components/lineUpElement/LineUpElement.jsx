@@ -16,10 +16,12 @@ function LineUpElement({
       <div className="lineup-image">
         <img src={image} alt={altText} />
       </div>
-      <div className="lineup-text">
-        <h4>{time}</h4>
-        <h3>{title}</h3>
-        <p>{subtitle}</p>
+      <div className="lineup-text-container">
+        <div className="lineup-text">
+          <h4>{time}</h4>
+          <h3>{title}</h3>
+          <p>{subtitle}</p>
+        </div>
       </div>
     </div>
   );
