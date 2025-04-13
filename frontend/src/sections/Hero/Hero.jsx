@@ -10,7 +10,6 @@ function Hero() {
   const [isMobile, setIsMobile] = useState(width <= 768);
   
   useEffect(() => {
-    console.log('useEffect called');
     const handleResize = () => {
       setWidth(window.innerWidth);
       setIsMobile(window.innerWidth <= 768);

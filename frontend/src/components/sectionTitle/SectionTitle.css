@@ -1,6 +1,5 @@
 .section-title {
   width: 100%;
-  background-color: var(--yellow);
   color: var(--purple);
   padding: 2rem 0;
 }
@@ -16,6 +15,5 @@
 }
 
 .section-title.inverse {
-  background-color: var(--purple);
   color: var(--red);
 }

@@ -36,7 +36,7 @@ function LineUp() {
     {
       time: '22:00',
       title: 'El Condumio',
-      subtitle: 'Qué festín, ¡un banquete de postín!',
+      subtitle: 'Que me coma el tigre',
       image: dinner,
       altText: 'Dame más gasolina',
     },
