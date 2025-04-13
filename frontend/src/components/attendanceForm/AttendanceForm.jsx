@@ -10,6 +10,8 @@ function AttendanceForm() {
     const [stage, setStage] = useState(0);
     const [guests, setGuests] = useState([]);
 
+    const apiUrl = import.meta.env.VITE_BASE_API_URL;
+
     const params = new URLSearchParams(window.location.search);
     const guestId = params.get('guestId');
     console.log(guestId);
@@ -19,7 +21,7 @@ function AttendanceForm() {
             setLoading(false);
             return;
         }
-        fetch(`http://localhost:8000/api/guests/guest/${guestId}/`)
+        fetch(`${apiUrl}/guests/guest/${guestId}/`)
         .then((response) => response.json())
         .then((data) => {
             setCurrentGuest(data);
@@ -59,7 +61,7 @@ function AttendanceForm() {
             <h2>Busca tu nombre</h2>
             <p>Por favor, ingresa tu nombre y apellido para confirmar tu asistencia.</p>
             <ApiForm
-                url="http://localhost:8000/api/guests/search/"
+                url={`${apiUrl}/guests/search/`}
                 method="GET"
                 fields={[
                     { name: 'first_name', type: 'text', label: 'Nombre' },
@@ -98,7 +100,7 @@ function AttendanceForm() {
         }
         content = <div className="confirmation-message">
             <ApiForm
-                url={`http://localhost:8000/api/guests/guest/${currentGuest.id}/`}
+                url={`${apiUrl}/guests/guest/${currentGuest.id}/`}
                 method="PATCH"
                 fields={[
                     { name: 'first_name', type: 'text', label: 'Nombre' },
