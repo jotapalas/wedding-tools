@@ -8,8 +8,11 @@ class GuestAdmin(admin.ModelAdmin):
     list_display = (
         'first_name',
         'last_name',
-        'nickname',
         'attending',
+        'pre_wedding',
+        'allergies',
+        'needs_transport',
+        'needs_accommodation',
         'email',
         'phone',
         'created_at',
@@ -21,6 +24,7 @@ class GuestAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'attending',
+        'pre_wedding',
         'invited_by',
         'relationship',
         'age_group',
@@ -43,6 +47,7 @@ class GuestAdmin(admin.ModelAdmin):
                 'phone',
                 'attending',
                 'attending_probability',
+                'pre_wedding',
                 'group',
             )
         }),
@@ -53,6 +58,8 @@ class GuestAdmin(admin.ModelAdmin):
                 'relationship',
                 'age_group',
                 'open_bar',
+                'needs_transport',
+                'needs_accommodation',
                 'special_diet',
                 'allergies',
             )
