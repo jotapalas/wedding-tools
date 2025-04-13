@@ -24,6 +24,7 @@ class GuestLiteSerializer(serializers.ModelSerializer):
             'attending',
             'special_diet',
             'allergies',
+            'pre_wedding',
         )
 
 class GuestSerializer(GuestLiteSerializer):

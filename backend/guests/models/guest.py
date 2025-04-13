@@ -12,9 +12,10 @@ class Guest(UUIDModel, TimestampModel):
     Guest model
     """
     class AttendingStatusChoices(models.IntegerChoices):
+        DIDNT_RESPOND = -1, _('Didn\'t respond')
         NO = 0, _('No')
         YES = 1, _('Yes')
-        DIDNT_RESPOND = 2, _('Didn\'t respond')
+        MAYBE = 2, _('Maybe')
 
     class RelationshipChoices(models.IntegerChoices):
         FRIEND = 0, _('Friend')
@@ -68,6 +69,11 @@ class Guest(UUIDModel, TimestampModel):
     )
     attending = models.IntegerField(
         verbose_name=_('Is attending?'),
+        choices=AttendingStatusChoices.choices,
+        default=AttendingStatusChoices.DIDNT_RESPOND,
+    )
+    pre_wedding = models.IntegerField(
+        verbose_name=_('Pre-wedding attendance'),
         choices=AttendingStatusChoices.choices,
         default=AttendingStatusChoices.DIDNT_RESPOND,
     )
