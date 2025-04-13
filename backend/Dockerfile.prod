@@ -1,20 +1,16 @@
-# Usa una imagen oficial de Python como base
-FROM python:3.11-slim
+FROM python:3.13.3-alpine
 
-# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copia los archivos de dependencias
 COPY requirements.txt .
 
-# Instala dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia todo el código de la app
 COPY . .
 
-# Exponer el puerto que usará Django (Render detecta el 8000)
 EXPOSE 8000
 
-# Comando por defecto para iniciar el servidor (lo puedes sobrescribir desde Render)
-CMD ["gunicorn", "src.wsgi:application", "--bind", "0.0.0.0:8000"]
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
