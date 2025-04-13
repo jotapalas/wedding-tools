@@ -8,7 +8,7 @@ from wedding_info.models import FAQ
 from wedding_info.serializers import FAQSerializer
 
 
-class GuestView(APIView):
+class FAQView(APIView):
     permission_classes = [AllowAny, ]
 
     def get(self, request):
