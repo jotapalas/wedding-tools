@@ -1,13 +1,50 @@
 import './Attendance.css';
 
+import { useState } from 'react';
+
 import AttendanceForm from '../../components/attendanceForm/AttendanceForm';
 import SectionTitle from '../../components/sectionTitle/SectionTitle';
 
 
 function Attendance() {
+  const [showForm, setShowForm] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  
+  const blockScroll = () => {
+    const newScrollY = window.scrollY;
+    setScrollY(newScrollY);
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${newScrollY}px`;
+    document.body.style.overflow = 'hidden';
+  }
+
+  const unblockScroll = () => {
+    document.body.style.position = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, scrollY);
+  }
+
+  const toggleForm = () => {
+    const newShowForm = !showForm;
+    console.log('toggleForm', newShowForm);
+    setShowForm(newShowForm);
+    if (newShowForm) {
+      blockScroll();
+    } else {
+      unblockScroll();
+    }
+
+  }
+
   return (
     <section className="attendance">
       <SectionTitle title="¿Te vienes?" />
+      <div className={`attendance-form-container ${showForm ? 'show' : 'hide'}`}>
+        <div className="attendance-form-close" onClick={() => toggleForm()}>
+          <p>X</p>
+        </div>
+        <AttendanceForm />
+      </div>
       <div className="attendance-content">
         <p>
           Nos encancaría contar contigo pero, si no puedes, <span className="bold">no nos vamos a enfadar. </span>
@@ -19,7 +56,10 @@ function Attendance() {
         <p>
           👇
         </p>
-        <button>
+        <button
+          onClick={() => toggleForm()}
+          className="attendance-button"
+        >
           <p>Reserva tu entrada</p>
           <p>🍸🍟🪩</p>
         </button>

@@ -4,17 +4,19 @@ import ApiForm from '../apiForm/ApiForm';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-function AttendanceForm() {
+import SectionTitle from '../sectionTitle/SectionTitle';
+import Guest from '../guest/Guest';
+
+function AttendanceForm({ className }) {
     const [currentGuest, setCurrentGuest] = useState();
     const [loading, setLoading] = useState(true);
     const [stage, setStage] = useState(1);
     const [guests, setGuests] = useState([]);
 
-    const apiUrl = import.meta.env.VITE_BASE_API_URL;
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
     const params = new URLSearchParams(window.location.search);
     const guestId = params.get('guestId');
-    console.log(guestId);
     
     useEffect(() => {
         if (!guestId) {
@@ -28,12 +30,9 @@ function AttendanceForm() {
             setLoading(false);
         })
         .catch((error) => {
-            console.error('Error fetching guest:', error);
             setLoading(false);
         });
     }, []);
-
-    
 
     const selectGuest = (guest) => {
         setCurrentGuest(guest);
@@ -41,6 +40,7 @@ function AttendanceForm() {
     }
 
     let content = <div className="loading">Loading...</div>;
+    
     if (loading) {
         return content;
     }
@@ -51,19 +51,20 @@ function AttendanceForm() {
             setStage(2);
         };
         const handleError = (error) => {
-            console.error('Error searching guests:', error);
-            setStage(0);
+            setGuests([]);
+            setStage(2);
         };
         content = <div className="attendance-form">
-            <h2>Busca tu nombre</h2>
-            <p>Por favor, ingresa tu nombre y apellido para confirmar tu asistencia.</p>
+            <SectionTitle title="Búscate en la lista" />
+            <p className="attendance-form-instructions">
+                Por favor, introduce tu nombre y/o apellido para encontrarte en la lista de invitados.
+            </p>
             <ApiForm
                 url={`${apiUrl}/guests/search/`}
                 method="GET"
                 fields={[
                     { name: 'first_name', type: 'text', label: 'Nombre' },
                     { name: 'last_name', type: 'text', label: 'Apellido' },
-                    { name: 'nickname', type: 'text', label: 'Apodo' },
                 ]}
                 onSuccess={handleSuccess}
                 onError={handleError}
@@ -71,20 +72,25 @@ function AttendanceForm() {
         </div>;
     } else if (stage === 2) {
         content = <div className="confirmation-message">
-            {
+            <SectionTitle title={
                 guests.length === 0
                 ? 'No se encontraron invitados'
-                : 'Invitados encontrados:'
+                : 'Invitados encontrados'
                 
-            }
-            <ul>
+            } />
+            <div className="guests-container">
                 {guests.map((guest) => (
-                    <li key={guest.id}>
-                        {guest.first_name} {guest.last_name} {guest.nickname ? ` (${guest.nickname})` : ''}
-                        <button onClick={() => selectGuest(guest)}>Confirmar</button>
-                    </li>
+                    <Guest
+                        key={guest.id}
+                        guest={guest}
+                        onClick={() => selectGuest(guest)} 
+                    />
                 ))}
-            </ul>
+            </div>
+            <button onClick={() => {
+                setStage(1);
+                setGuests([]);
+            }}>Volver</button>
         </div>;
     } else if (stage === 3) {
         const handleSuccess = (data) => {
@@ -92,53 +98,105 @@ function AttendanceForm() {
             setCurrentGuest(data);
         }
         const handleError = (error) => {
-            console.error('Error updating guest:', error);
-            setStage(0);
+            console.error(error);
+            setStage(1);
         }
         content = <div className="confirmation-message">
+            <SectionTitle title="Confirma tu asistencia y preferencias" />
             <ApiForm
                 url={`${apiUrl}/guests/guest/${currentGuest.id}/`}
                 method="PATCH"
                 fields={[
-                    { name: 'first_name', type: 'text', label: 'Nombre' },
-                    { name: 'last_name', type: 'text', label: 'Apellido' },
-                    { name: 'nickname', type: 'text', label: 'Apodo' },
+                    { name: 'first_name', type: 'text', label: 'Nombre', required: true },
+                    { name: 'last_name', type: 'text', label: 'Apellido', required: true },
                     { name: 'attending', type: 'select', label: 'Asistiré', options: [
                         {value: 1, label: 'Sí'},
                         {value: 0, label: 'No'},
-                    ]},
+                    ], required: true, horizontal: true},
+                    { name: 'diet', type: 'select', label: 'Dieta especial', options: [
+                        {value: 'none', label: 'Ninguna'},
+                        {value: 'vegetarian', label: 'Vegetariana'},
+                        {value: 'vegan', label: 'Vegana'},
+                        {value: 'child', label: 'Menú infantil'},
+                        {value: 'pregnant', label: '¡Estoy preñator!'},
+                    ], horizontal: true},
+                    { name: 'allergies', type: 'text', label: 'Alergias' },
+                    { name: 'needs_transportation', type: 'select', label: '¿Necesitas autobús?', options: [
+                        {value: 1, label: 'Sí'},
+                        {value: 0, label: 'No'},
+                    ], horizontal: true, required: true},
+                    { name: 'needs_accomodation', type: 'select', label: '¿Necesitas alojamiento?', options: [
+                        {value: 1, label: 'Sí'},
+                        {value: 0, label: 'No'},
+                    ], horizontal: true},
+                    { name: 'pre_wedding', type: 'select', label: '¿Te apuntas a la preboda?', options: [
+                        {value: 1, label: 'Sí'},
+                        {value: 0, label: 'No'},
+                        {value: 2, label: 'No sé todavía'},
+                    ], horizontal: true, required: true},
                 ]}
                 onSuccess={handleSuccess}
                 onError={handleError}
                 initialData={currentGuest}
             />
-            <button onClick={() => {
-                setStage(1);
-                setCurrentGuest(null);
-            }}>¿No eres tú?</button>
         </div>;
     } else if (stage === 4) {
         content = <div className="confirmation-message">
-            <h2>Gracias por confirmar tu asistencia, {currentGuest.nickname || currentGuest.first_name}</h2>
-            <p>Tu asistencia ha sido registrada.</p>
+            <SectionTitle title="¡GRACIAS!" />
+            <h3 className="attendance-form-instructions">
+                {
+                    currentGuest.attending === 1
+                    ? '¡Nos vemos en la boda!'
+                    : '¡Ooooh! Pues nos vemos en los bares'
+                }
+            </h3>
             {
-                currentGuest.same_group_guests.length > 0 &&
-                <div className="same-group-guests">
-                    <h3>¿Quieres confirmar la asistencia de alguien de tu grupo?</h3>
+                currentGuest.same_group_guests.length > 0
+                ? <div className="same-group-guests">
+                    <p className="attendance-form-instructions">
+                        ¿Quieres confirmar la asistencia de alguien más de tu grupo?
+                    </p>
                     <button onClick={() => {
                         setGuests(currentGuest.same_group_guests);
                         setStage(2);
                     }}>Sí</button>
+                    <button onClick={() => {
+                        setStage(5);
+                        setGuests();
+                    }}>No, terminar</button>
                 </div>
+                : <button onClick={() => setStage(5)}>
+                    Terminar
+                </button>
             }
-            <button onClick={() => setStage(0)}>Volver</button>
+        </div>;
+    } else if (stage === 5) {
+        const spotifyUrl = import.meta.env.VITE_SPOTIFY_PLAYLIST_URL;
+        console.log(spotifyUrl);
+        if (!spotifyUrl) {
+            setStage(1);
+            return;
+        }
+        
+        content = <div className="confirmation-message">
+            <SectionTitle title="Una última cosa..." />
+            <p className="attendance-form-instructions">
+                Hemos creado una lista de Spotify colaborativa 
+                y nos encantaría que añadieras <span className="bold">tu canción favorita</span> para la fiesta.
+            </p>
+            <p className="attendance-form-instructions">
+            <span className="bold">No podemos prometerte que suene,</span> pero tendremos en cuenta los gustos generales.
+            </p>
+            <button onClick={() => {
+                window.open(spotifyUrl, '_blank');
+            }}>
+                ¡Por supuesto!
+            </button>
         </div>;
     }
 
-    return <div className="attendance-form-container">
-        <div className="attendance-form-content">
-            {content}
-        </div>
+    return <div className={className || 'attendance-form-content'}>
+        {content}
     </div>;
 }
 

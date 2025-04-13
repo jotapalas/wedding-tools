@@ -15,6 +15,7 @@
 
 html {
   font-size: 18px;
+  overflow-x: hidden;
   --yellow: #f1f692;
   --purple: #cfaefe;/*#bb92f6;*/
   --red: #ff3131; /*#ec291e;*/
@@ -34,6 +35,8 @@ body {
   font-size: 2rem;
   font-weight: 300;
   color: #333;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 code {
