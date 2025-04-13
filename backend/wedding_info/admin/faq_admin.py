@@ -5,6 +5,6 @@ from wedding_info.models import FAQ
 
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
-    list_display = ('question', 'answer', 'created_at')
+    list_display = ('question', 'order', 'answer', 'created_at')
     search_fields = ('question', 'answer')
-    ordering = ('-created_at',)
+    ordering = ('order', 'question', )

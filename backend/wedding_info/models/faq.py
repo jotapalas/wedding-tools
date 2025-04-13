@@ -9,11 +9,14 @@ class FAQ(UUIDModel, TimestampModel):
 
     question = models.CharField(max_length=255, verbose_name=_("Question"))
     answer = models.TextField(verbose_name=_("Answer"))
+    order = models.PositiveIntegerField(
+        default=0, verbose_name=_("Order"), help_text=_("Order of the FAQ")
+    )
 
     class Meta:
         verbose_name = _("FAQ")
         verbose_name_plural = _("FAQs")
-        ordering = ["-created_at"]
+        ordering = ["order"]
 
     def __str__(self):
         return self.question
