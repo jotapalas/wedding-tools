@@ -138,6 +138,14 @@ class Guest(UUIDModel, TimestampModel):
         blank=True,
         default=''
     )
+    needs_transport = models.BooleanField(
+        verbose_name=_('Needs transport'),
+        default=False
+    )
+    needs_accommodation = models.BooleanField(
+        verbose_name=_('Needs accomodation'),
+        default=False
+    )
 
     class Meta:
         verbose_name = _('Guest')
