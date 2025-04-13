@@ -71,7 +71,7 @@ const ApiForm = ({ className = 'api-form', url, fields, method = 'POST', initial
               className={className || 'input-field'}
               required={required}
             >
-              <option value="">Selecciona una opción</option>
+              <option value={null}>Selecciona una opción</option>
               {options?.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}

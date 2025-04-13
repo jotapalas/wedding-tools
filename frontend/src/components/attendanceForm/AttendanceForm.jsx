@@ -109,23 +109,24 @@ function AttendanceForm({ className }) {
                 fields={[
                     { name: 'first_name', type: 'text', label: 'Nombre', required: true },
                     { name: 'last_name', type: 'text', label: 'Apellido', required: true },
+                    { name: 'email', type: 'text', label: 'Correo electrónico' },
                     { name: 'attending', type: 'select', label: 'Asistiré', options: [
                         {value: 1, label: 'Sí'},
                         {value: 0, label: 'No'},
                     ], required: true, horizontal: true},
-                    { name: 'diet', type: 'select', label: 'Dieta especial', options: [
-                        {value: 'none', label: 'Ninguna'},
+                    { name: 'special_diet', type: 'select', label: 'Dieta especial', options: [
+                        {value: '', label: 'Ninguna'},
                         {value: 'vegetarian', label: 'Vegetariana'},
                         {value: 'vegan', label: 'Vegana'},
                         {value: 'child', label: 'Menú infantil'},
                         {value: 'pregnant', label: '¡Estoy preñator!'},
                     ], horizontal: true},
                     { name: 'allergies', type: 'text', label: 'Alergias' },
-                    { name: 'needs_transportation', type: 'select', label: '¿Necesitas autobús?', options: [
+                    { name: 'needs_transport', type: 'select', label: '¿Necesitas autobús?', options: [
                         {value: 1, label: 'Sí'},
                         {value: 0, label: 'No'},
                     ], horizontal: true, required: true},
-                    { name: 'needs_accomodation', type: 'select', label: '¿Necesitas alojamiento?', options: [
+                    { name: 'needs_accommodation', type: 'select', label: '¿Necesitas alojamiento?', options: [
                         {value: 1, label: 'Sí'},
                         {value: 0, label: 'No'},
                     ], horizontal: true},
