@@ -10,12 +10,18 @@ function Attendance() {
       <SectionTitle title="¿Te vienes?" />
       <div className="attendance-content">
         <p>
-          Nos encancaría contar contigo pero, si no puedes, no nos vamos a enfadar.
-          Eso sí, organizar una boda es un movidote, así que te pedimos por favor 
-          que rellenes este formulario cuanto antes. 👇
+          Nos encancaría contar contigo pero, si no puedes, <span className="bold">no nos vamos a enfadar. </span>
+        </p>
+        <p>
+          Eso sí, organizar una boda es un movidote, así que te pedimos <span className="bold">por favor </span>
+          que rellenes este formulario cuanto antes.
+        </p>
+        <p>
+          👇
         </p>
         <button>
-          Reserva tu entrada
+          <p>Reserva tu entrada</p>
+          <p>🍸🍟🪩</p>
         </button>
       </div>
     </section>

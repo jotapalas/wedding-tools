@@ -2,25 +2,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -0.5rem;
 }
 
-.attendance-content p {
-    font-size: 1.2rem;
-    margin: 0.1rem 20rem;
-    width: 60%;
-    max-width: 800px;
+.attendance-content > p {
+    margin: 0.5rem 5rem;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-.attendance-content button {
-    width: 40vw;
+.attendance-content > button {
+    width: 50vw;
+    height: 12vw;
     background-color: var(--purple);
     color: white;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
+    margin-bottom: 0;
     font-size: 1.8rem;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 0.8rem;
+    padding: 0.5rem;
+    padding-top: 1rem;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
+    font-family: var(--title-font);
+    color: var(--red);
+    letter-spacing: 0.25rem;
+}
+
+.attendance-content > button > p {
+  margin: 0.2em;
+}
+
+.attendance-content > p > .bold {
+    font-weight: 500;
 }

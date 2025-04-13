@@ -7,6 +7,8 @@ import Directions from './sections/Directions/Directions';
 import FAQ from './sections/FAQ/FAQ';
 import Gifts from './sections/Gifts/Gifts';
 
+import discoBall from './img/discoball.png';
+
 
 function App() {
   return (
@@ -15,6 +17,13 @@ function App() {
       <Claim />
       <LineUp />
       <Attendance />
+      <div className="discoball-container">
+        <img
+          className="discoball"
+          src={discoBall}
+          alt="Hoy es noche de fiesta"
+        />
+      </div>
       <Directions />
       <FAQ />
       <Gifts />
