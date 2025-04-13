@@ -1,0 +1,48 @@
+.directions-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 50vw;
+}
+
+.map {
+    width: 50%;
+}
+
+.directions-text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0.5rem 0;
+    text-align: center;
+    padding: 0 2rem;
+    gap: 3rem;
+}
+
+.place {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.place > h2 {
+    font-size: 2.5rem;
+    margin: 0.5rem 0;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.place > h3 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+    font-weight: 500;
+}
+
+.place p {
+    margin: 0.5rem 0;
+    font-size: 1.6rem;
+}

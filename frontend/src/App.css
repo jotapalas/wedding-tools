@@ -1,0 +1,43 @@
+.discoball-container {
+  position: relative;
+  width: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.discoball {
+  position: absolute;
+  width: 40%;
+  transform: translate(175%, -60%) rotate(30deg);
+  opacity: 60%;
+}
+
+button {
+  width: 50vw;
+  height: 12vw;
+  background-color: var(--purple);
+  color: white;
+  margin: 2rem auto;
+  margin-bottom: 0;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem;
+  padding-top: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: var(--title-font);
+  color: var(--red);
+  letter-spacing: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+button > p {
+  margin: auto;
+  margin-top: 0.2em;
+}
+
+.bold {
+  font-weight: 500;
+}

@@ -1,0 +1,48 @@
+.attendance-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -0.5rem;
+}
+
+.attendance-content > p {
+  margin: 0.5rem 5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.attendance-content > p > .bold {
+  font-weight: 500;
+}
+
+.attendance-form-container {
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  position: fixed;
+  bottom: 0;
+  transition: height 0.5s ease, opacity 1s ease-out;
+  background-color: var(--yellow);
+}
+
+.attendance-form-container.hide {
+  height: 0;
+}
+
+.attendance-form-content {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  margin-top: 10rem;
+}
+
+.attendance-form-close {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  margin: 1rem;
+  font-size: 3rem;
+  color: var(--red);
+  cursor: pointer;
+  font-weight: 500;
+}

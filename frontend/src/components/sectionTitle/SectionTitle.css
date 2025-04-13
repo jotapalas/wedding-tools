@@ -1,0 +1,19 @@
+.section-title {
+  width: 100%;
+  color: var(--purple);
+  padding: 2rem 0;
+}
+
+.section-title h1 {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  margin: 0;
+  margin-top: 1rem;
+  font-family: var(--title-font);
+}
+
+.section-title.inverse {
+  color: var(--red);
+}
