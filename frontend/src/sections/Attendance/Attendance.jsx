@@ -14,7 +14,7 @@ function Attendance() {
         </p>
         <p>
           Eso sí, organizar una boda es un movidote, así que te pedimos <span className="bold">por favor </span>
-          que rellenes este formulario cuanto antes.
+          que rellenes este formulario cuanto antes, y nos digas si vienes o no.
         </p>
         <p>
           👇

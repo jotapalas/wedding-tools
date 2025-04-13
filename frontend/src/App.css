@@ -8,6 +8,6 @@
 .discoball {
   position: absolute;
   width: 40%;
-  transform: translate(175%, -65%) rotate(30deg);
+  transform: translate(175%, -60%) rotate(30deg);
   opacity: 60%;
 }
