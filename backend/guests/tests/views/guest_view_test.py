@@ -70,3 +70,14 @@ class GuestViewTestCase(APITestCase):
         self.guest.refresh_from_db()
         self.assertTrue(self.guest.needs_accommodation)
         self.assertFalse(self.guest.needs_transport)
+
+    def test_prewedding(self):
+        response = self.client.patch(self.url, {
+            'first_name': self.guest.first_name,
+            'last_name': self.guest.last_name,
+            'attending': Guest.AttendingStatusChoices.YES,
+            'pre_wedding': 2,
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+        self.guest.refresh_from_db()
+        self.assertEqual(self.guest.pre_wedding, Guest.AttendingStatusChoices.MAYBE)
