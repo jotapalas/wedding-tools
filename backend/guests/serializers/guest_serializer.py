@@ -22,14 +22,24 @@ class GuestLiteSerializer(serializers.ModelSerializer):
             'email',
             'phone',
             'attending',
-            'is_vegan',
-            'is_vegetarian',
-            'common_allergies',
-            'other_allergies',
+            'special_diet',
+            'allergies',
+            'pre_wedding',
+            'needs_transport',
+            'needs_accommodation',
         )
 
 class GuestSerializer(GuestLiteSerializer):
-    same_group_guests = GuestLiteSerializer(many=True, read_only=True)
+    same_group_guests = serializers.SerializerMethodField(read_only=True)
 
     class Meta(GuestLiteSerializer.Meta):
         fields = GuestLiteSerializer.Meta.fields + ('same_group_guests',)
+
+    def get_same_group_guests(self, obj):
+        # Get the list of guests in the same group as the current guest
+        same_group_guests = obj.same_group_guests
+        if same_group_guests:
+            same_group_guests = same_group_guests.filter(
+            attending=Guest.AttendingStatusChoices.DIDNT_RESPOND
+        )
+        return GuestLiteSerializer(same_group_guests, many=True).data

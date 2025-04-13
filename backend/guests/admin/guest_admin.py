@@ -8,8 +8,11 @@ class GuestAdmin(admin.ModelAdmin):
     list_display = (
         'first_name',
         'last_name',
-        'nickname',
         'attending',
+        'pre_wedding',
+        'allergies',
+        'needs_transport',
+        'needs_accommodation',
         'email',
         'phone',
         'created_at',
@@ -21,15 +24,16 @@ class GuestAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'attending',
+        'pre_wedding',
         'invited_by',
         'relationship',
         'age_group',
-        'is_vegan',
-        'is_vegetarian',
+        'special_diet',
         'open_bar',
         'group',
     )
     ordering = (
+        '-attending',
         'first_name',
         'last_name',
     )
@@ -43,6 +47,7 @@ class GuestAdmin(admin.ModelAdmin):
                 'phone',
                 'attending',
                 'attending_probability',
+                'pre_wedding',
                 'group',
             )
         }),
@@ -53,10 +58,10 @@ class GuestAdmin(admin.ModelAdmin):
                 'relationship',
                 'age_group',
                 'open_bar',
-                'is_vegan',
-                'is_vegetarian',
-                'common_allergies',
-                'other_allergies',
+                'needs_transport',
+                'needs_accommodation',
+                'special_diet',
+                'allergies',
             )
         }),
         (_('System fields'), {

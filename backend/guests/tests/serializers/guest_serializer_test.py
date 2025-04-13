@@ -17,10 +17,8 @@ class GuestSerializerTestCase(TestCase):
             'email',
             'phone',
             'attending',
-            'is_vegan',
-            'is_vegetarian',
-            'common_allergies',
-            'other_allergies',
+            'special_diet',
+            'allergies',
             'same_group_guests',
         ):
             self.assertIn(field, serializer.data)
@@ -44,17 +42,15 @@ class GuestSerializerTestCase(TestCase):
     def test_update(self):
         serializer = GuestSerializer(self.guest, data={
             'attending': 1,
-            'is_vegan': True,
-            'is_vegetarian': False,
-            'common_allergies': ['nuts'],
+            'special_diet': 'vegetarian',
+            'allergies': 'nuts',
         }, partial=True)
         self.assertTrue(serializer.is_valid(), serializer.errors)
         serializer.save()
         self.guest.refresh_from_db()
         for field in  (
             'attending',
-            'is_vegan',
-            'is_vegetarian',
-            'common_allergies',
+            'special_diet',
+            'allergies',
         ):
             self.assertEqual(getattr(self.guest, field), serializer.validated_data[field])

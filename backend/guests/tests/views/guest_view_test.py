@@ -19,16 +19,15 @@ class GuestViewTestCase(APITestCase):
             'first_name': self.guest.first_name,
             'last_name': self.guest.last_name,
             'attending': Guest.AttendingStatusChoices.YES,
-            'is_vegan': True,
-            'is_vegetarian': False,
-            'common_allergies': ['nuts'],
+            'special_diet': 'vegan',
+            'allergies': 'nuts',
         })
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
         self.guest.refresh_from_db()
         self.assertEqual(self.guest.attending, Guest.AttendingStatusChoices.YES)
         self.assertTrue(self.guest.is_vegan)
         self.assertFalse(self.guest.is_vegetarian)
-        self.assertEqual(self.guest.common_allergies, ['nuts'])
+        self.assertEqual(self.guest.allergies, 'nuts')
 
     def test_bad_request(self):
         response = self.client.patch(self.url, {
@@ -58,3 +57,27 @@ class GuestViewTestCase(APITestCase):
             'guest_id': 'non-existing'
         }))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_accommodation_and_transportation(self):
+        response = self.client.patch(self.url, {
+            'first_name': self.guest.first_name,
+            'last_name': self.guest.last_name,
+            'attending': Guest.AttendingStatusChoices.YES,
+            'needs_accommodation': 1,
+            'needs_transportation': 0,
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+        self.guest.refresh_from_db()
+        self.assertTrue(self.guest.needs_accommodation)
+        self.assertFalse(self.guest.needs_transport)
+
+    def test_prewedding(self):
+        response = self.client.patch(self.url, {
+            'first_name': self.guest.first_name,
+            'last_name': self.guest.last_name,
+            'attending': Guest.AttendingStatusChoices.YES,
+            'pre_wedding': 2,
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+        self.guest.refresh_from_db()
+        self.assertEqual(self.guest.pre_wedding, Guest.AttendingStatusChoices.MAYBE)

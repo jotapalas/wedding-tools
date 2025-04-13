@@ -60,8 +60,8 @@ const ApiForm = ({ className = 'api-form', url, fields, method = 'POST', initial
 
   return (
     <form onSubmit={handleSubmit} className={className}>
-      {fields.map(({ name, type, label, className, required, options }) => (
-        <div key={name} className="form-group">
+      {fields.map(({ name, type, label, className, required, options, horizontal }) => (
+        <div key={name} className={"form-group" + (horizontal ? ' horizontal' : '')}>
           <label>{label || name}</label>
           {type === 'select' ? (
             <select
@@ -71,7 +71,7 @@ const ApiForm = ({ className = 'api-form', url, fields, method = 'POST', initial
               className={className || 'input-field'}
               required={required}
             >
-              <option value="">Selecciona una opción</option>
+              <option value={null}>Selecciona una opción</option>
               {options?.map((opt) => (
                 <option key={opt.value} value={opt.value}>
                   {opt.label}
