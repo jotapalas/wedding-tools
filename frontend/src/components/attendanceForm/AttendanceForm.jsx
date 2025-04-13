@@ -118,7 +118,6 @@ function AttendanceForm({ className }) {
                         {value: '', label: 'Ninguna'},
                         {value: 'vegetarian', label: 'Vegetariana'},
                         {value: 'vegan', label: 'Vegana'},
-                        {value: 'child', label: 'Menú infantil'},
                         {value: 'pregnant', label: '¡Estoy preñator!'},
                     ], horizontal: true},
                     { name: 'allergies', type: 'text', label: 'Alergias' },
@@ -155,7 +154,10 @@ function AttendanceForm({ className }) {
                 currentGuest.same_group_guests.length > 0
                 ? <div className="same-group-guests">
                     <p className="attendance-form-instructions">
-                        ¿Quieres confirmar la asistencia de alguien más de tu grupo?
+                        ¡Hay invitados en tu grupo que no han contestado todavía!
+                    </p>
+                    <p className="attendance-form-instructions">
+                        ¿Quieres rellenar el formulario por ellos?
                     </p>
                     <button onClick={() => {
                         setGuests(currentGuest.same_group_guests);

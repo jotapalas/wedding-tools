@@ -17,7 +17,7 @@ button {
   height: 12vw;
   background-color: var(--purple);
   color: white;
-  margin: 2rem 0;
+  margin: 2rem auto;
   margin-bottom: 0;
   font-size: 1.8rem;
   text-transform: uppercase;
@@ -30,7 +30,6 @@ button {
   font-family: var(--title-font);
   color: var(--red);
   letter-spacing: 0.25rem;
-  margin: auto;
   margin-top: 0.5rem;
 }
 

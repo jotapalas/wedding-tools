@@ -1,4 +1,5 @@
 .form-group {
+  text-align: center;
   display: flex;
   margin-bottom: 1rem;
   width: 100%;
@@ -7,8 +8,10 @@
 
 .form-group label {
   margin-bottom: 0.5rem;
+  margin-top: 1rem;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: left;
 }
 
 .form-group input{
@@ -30,6 +33,7 @@
 
 .form-group select {
   padding: 0.5rem;
+  margin-top: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0);
