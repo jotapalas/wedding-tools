@@ -1,7 +1,11 @@
 import './Gifts.css';
 import SectionTitle from '../../components/sectionTitle/SectionTitle';
 
-function Gifts() {
+function Gifts() {                           
+  const iban = (import.meta.env.VITE_IBAN || 'ES1234567890123456789012').replace(/\s/g,'').match(/.{1,4}/g).join(' ');
+  const accountHolder = import.meta.env.VITE_ACCOUNT_HOLDER;
+
+
   return (
     <section className="gifts">
       <SectionTitle title="Regalos" inverse={true} />
@@ -13,9 +17,16 @@ function Gifts() {
           Si a pesar de todo quieres hacernos un regalo y prefieres 
           no llevar <span className="bold">un sobre en el escote,</span> este es nuestro número de cuenta:
         </p>
-        <h4 className="gifts-number">
-          ES00 1234 5678 9101 1121
-        </h4>
+        <div className="gifts-iban-container">
+          <h4 className="gifts-iban">
+            { iban }
+          </h4>
+          { accountHolder &&
+            <h3 className="gifts-account-holder">
+              { accountHolder }
+            </h3>
+          }
+        </div>
       </div>
     </section>
   );

@@ -15,7 +15,6 @@ class GuestSearchViewTestCase(APITestCase):
         response = self.client.get(self.url, {
             'first_name': self.guest.first_name,
             'last_name': self.guest.last_name,
-            'nickname': self.guest.nickname,
         })
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
         self.assertEqual(len(response.data), 1)
@@ -39,7 +38,7 @@ class GuestSearchViewTestCase(APITestCase):
 
     def test_search_guest_nickname(self):
         response = self.client.get(self.url, {
-            'nickname': self.guest.nickname
+            'first_name': self.guest.nickname
         })
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
         self.assertEqual(len(response.data), 1)
