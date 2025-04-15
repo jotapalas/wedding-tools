@@ -14,6 +14,11 @@ class FAQ(UUIDModel, TimestampModel):
         verbose_name=_("Include moodboard"),
         help_text=_("Include the moodboard in this FAQ"),
     )
+    include_accommodation = models.BooleanField(
+        default=False,
+        verbose_name=_("Include accommodation"),
+        help_text=_("Include the accommodation in this FAQ"),
+    )
     order = models.PositiveIntegerField(
         default=0, verbose_name=_("Order"), help_text=_("Order of the FAQ")
     )

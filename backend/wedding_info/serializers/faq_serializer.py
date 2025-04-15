@@ -13,5 +13,6 @@ class FAQSerializer(serializers.ModelSerializer):
             'question',
             'answer',
             'include_moodboard',
+            'include_accommodation',
         )
   

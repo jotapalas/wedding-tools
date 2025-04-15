@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 
 import SectionTitle from '../sectionTitle/SectionTitle';
 import Guest from '../guest/Guest';
+import AccommodationInfo from '../accommodationInfo/AccommodationInfo';
+
 
 function AttendanceForm({ className, onClose = null }) {
     const [currentGuest, setCurrentGuest] = useState();
@@ -189,7 +191,6 @@ function AttendanceForm({ className, onClose = null }) {
         </div>;
     } else if (stage === 5) {
         const spotifyUrl = import.meta.env.VITE_SPOTIFY_PLAYLIST_URL;
-        console.log(spotifyUrl);
         if (!spotifyUrl) {
             if (onClose) {
                 onClose();
@@ -212,6 +213,14 @@ function AttendanceForm({ className, onClose = null }) {
             }}>
                 ¡Por supuesto!
             </button>
+
+            {
+                currentGuest.needs_accommodation === true &&
+                <div className="accomodation-info-container">
+                    <SectionTitle title="Sobre el alojamiento" />
+                    <AccommodationInfo />
+                </div>
+            }
         </div>;
     }
 
