@@ -1,5 +1,6 @@
 import './AttendanceForm.css';
 import ApiForm from '../apiForm/ApiForm';
+import AddToCalendarButton from '../addToCalendarButton/AddToCalendarButton';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -147,9 +148,15 @@ function AttendanceForm({ className }) {
                 {
                     currentGuest.attending === 1
                     ? '¡Nos vemos en la boda!'
-                    : '¡Ooooh! Pues nos vemos en los bares'
+                    : '¡Ooooh! ¡Pues nos vemos en los bares!'
                 }
             </h3>
+            {
+                currentGuest.attending === 1 &&
+                <div className="add-to-calendar-container">
+                    <AddToCalendarButton />
+                </div>
+            }
             {
                 currentGuest.same_group_guests.length > 0
                 ? <div className="same-group-guests">

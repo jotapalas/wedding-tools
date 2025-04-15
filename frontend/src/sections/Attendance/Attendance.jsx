@@ -26,7 +26,6 @@ function Attendance() {
 
   const toggleForm = () => {
     const newShowForm = !showForm;
-    console.log('toggleForm', newShowForm);
     setShowForm(newShowForm);
     if (newShowForm) {
       blockScroll();
