@@ -37,6 +37,11 @@
   text-align: center;
   margin-top: 10rem;
   padding-bottom: 10vh;
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.attendance-form-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .attendance-form-close {

@@ -28,9 +28,7 @@ function FAQ() {
         {questions.map((item) => (
           <FAQItem
             key={item.id}
-            question={item.question}
-            answer={item.answer}
-            includeMoodboard={item.include_moodboard}
+            {...item}
           />
         ))}
       </div>
