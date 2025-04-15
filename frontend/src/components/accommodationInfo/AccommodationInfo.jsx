@@ -28,6 +28,10 @@ function AccommodationInfo() {
           {sevillaCenterUrl}  
         </a>.
       </p>
+      <p>
+        Las habitaciones son un bien finito, así que, si te interesa, ¡te aconsejamos que&nbsp;
+        te des prisa!
+      </p>
     </div>
   );
 }
