@@ -32,8 +32,11 @@
 .attendance-form-content {
   width: 80%;
   margin: auto;
+  height: 90vh;
+  overflow: scroll;
   text-align: center;
   margin-top: 10rem;
+  padding-bottom: 10vh;
 }
 
 .attendance-form-close {
@@ -45,4 +48,20 @@
   color: var(--red);
   cursor: pointer;
   font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .attendance-form-content {
+    width: 50vw;
+    padding: 0 10vw 20vh 10vw;
+    margin: auto;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .attendance-form-content button {
+    width: 50%;
+    height: 4rem;
+    font-size: 1rem;
+  }
 }

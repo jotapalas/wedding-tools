@@ -17,3 +17,11 @@ button.guest-button {
     margin-right: 0;
     font-size: 2rem;
 }
+
+@media screen and (min-width: 768px) {
+    button.guest-button {
+        height: 2.5rem;
+        font-size: 0.75rem;
+    }
+    
+}
