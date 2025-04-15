@@ -42,7 +42,7 @@ function Attendance() {
         <div className="attendance-form-close" onClick={() => toggleForm()}>
           <p>X</p>
         </div>
-        <AttendanceForm />
+        <AttendanceForm onClose={toggleForm} />
       </div>
       <div className="attendance-content">
         <p>
