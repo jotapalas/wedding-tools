@@ -5,7 +5,7 @@ import moodboard from '../../img/moodboard.png';
 import { useState } from 'react';
 import AccommodationInfo from '../accommodationInfo/AccommodationInfo';
 
-function FAQItem({ question, answer, includeMoodboard, includeAccommodation }) {
+function FAQItem({ question, answer, include_moodboard, include_accommodation }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAnswer = () => {
@@ -24,8 +24,8 @@ function FAQItem({ question, answer, includeMoodboard, includeAccommodation }) {
       </div>
       <div className={`faq-answer${isOpen ? '' : ' hidden'}`}>
         <p>{answer}</p>
-        {includeMoodboard && (<img className="moodboard" src={moodboard} alt="Un poco de inspiración" />)}
-        {includeAccommodation && <AccommodationInfo />}
+        {include_moodboard && (<img className="moodboard" src={moodboard} alt="Un poco de inspiración" />)}
+        {include_accommodation && <AccommodationInfo />}
       </div>
     </div>
   );
