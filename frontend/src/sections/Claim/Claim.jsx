@@ -1,18 +1,20 @@
 import './Claim.css';
-import claim from '../../img/claim.jpeg';
+import claim from '../../img/claim.jpg';
 
 function Claim() {
   return (
     <section className="claim">
       <div className="claim-content">
         <div className="claim-element claim-text">
-          <p>
-            Si has aguantado todos estos años de relación,<br />
-            te mereces una buena fiesta<br />
+          <p className="claim-text-title">
+            Lo de la boda
+          </p>
+          <p className="claim-text-title">
+            iba en serio
           </p>
         </div>
         <div className="claim-element claim-image">
-          <img src={claim} alt="Mirando a nuestro esperanzador futuro" />
+          <img src={claim} alt="¿Ese es Mickey Mouse en patinete?" />
         </div>
       </div>
     </section>
