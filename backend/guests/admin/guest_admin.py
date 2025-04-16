@@ -9,6 +9,7 @@ class GuestAdmin(admin.ModelAdmin):
         'full_name',
         'attending',
         'pre_wedding',
+        'needs_transport',
         'allergies',
         'email',
         'updated_at',
@@ -20,12 +21,11 @@ class GuestAdmin(admin.ModelAdmin):
     list_filter = (
         'attending',
         'pre_wedding',
+        'special_diet',
+        'needs_transport',
         'invited_by',
         'relationship',
         'age_group',
-        'special_diet',
-        'open_bar',
-        'group',
     )
     ordering = (
         '-attending',
