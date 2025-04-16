@@ -13,8 +13,8 @@
     text-transform: uppercase;
 }
 
-.footer-container > p > .bold {
-    font-weight: 500;
+.footer-container > p {
+    margin-top: 1.5rem;
 }
 
 button.spotify-playlist-button {
