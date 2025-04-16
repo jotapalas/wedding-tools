@@ -6,16 +6,11 @@ from django.utils.safestring import mark_safe
 @admin.register(Guest)
 class GuestAdmin(admin.ModelAdmin):
     list_display = (
-        'first_name',
-        'last_name',
+        'full_name',
         'attending',
         'pre_wedding',
         'allergies',
-        'needs_transport',
-        'needs_accommodation',
         'email',
-        'phone',
-        'created_at',
         'updated_at',
     )
     search_fields = (
@@ -34,6 +29,7 @@ class GuestAdmin(admin.ModelAdmin):
     )
     ordering = (
         '-attending',
+        'updated_at',
         'first_name',
         'last_name',
     )

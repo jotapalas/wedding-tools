@@ -134,7 +134,7 @@ class Guest(UUIDModel, TimestampModel):
     )
     allergies = models.CharField(
         max_length=128,
-        verbose_name=_('Other allergies'),
+        verbose_name=_('Allergies'),
         blank=True,
         default=''
     )
@@ -151,7 +151,7 @@ class Guest(UUIDModel, TimestampModel):
         verbose_name = _('Guest')
         verbose_name_plural = _('Guests')
         unique_together = ['first_name', 'last_name']
-        ordering = ['group', 'first_name', 'last_name']
+        ordering = ['first_name', 'last_name']
 
 
     def __str__(self):
@@ -159,7 +159,7 @@ class Guest(UUIDModel, TimestampModel):
 
     @property
     def full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f"{self.first_name} {self.last_name}{ f' ({self.nickname})' if self.nickname else ''}"
     
     @property
     def same_group_guests(self):
@@ -183,6 +183,11 @@ class Guest(UUIDModel, TimestampModel):
             self.attending_probability = 1
         if self.attending == self.AttendingStatusChoices.NO:
             self.attending_probability = 0
+            self.open_bar = False
+            self.needs_transport = False
+            self.needs_accommodation = False
+            self.special_diet = ''
+            self.allergies = ''
         
         prev = Guest.objects.filter(pk=self.pk).first()
         super().save(*args, **kwargs)
