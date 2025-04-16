@@ -16,21 +16,20 @@ function AccommodationInfo() {
         >estos alojamientos</a> está cerca de la iglesia y de donde dejará el bus a la vuelta.
       </p>
       <p>
-        Si quieres alojarte en el hotel Abba, puedes usar el código&nbsp; 
-        <span className="bold">{promoCode}</span>&nbsp;
-        para conseguir un descuento del 15%, pero debes reservar a través de su web:&nbsp; 
+        Si quieres alojarte en el hotel Abba, puedes usar el código
+        <span className="bold"> {promoCode} </span>
+        para conseguir un descuento del 15%, pero debes reservar a través de su web:&nbsp;
         <a href={abbaUrl} target="_blank" rel="noopener noreferrer">{abbaUrl}</a>.
       </p>
       <p>
-        Por otro lado, si te haces socio del hotel Sevilla Center,&nbsp;
-        también puedes conseguir un 12% de descuento en su web:&nbsp;
+        Por otro lado, si te haces socio del hotel Sevilla Center,
+        también puedes conseguir un 12% de descuento en su web: 
         <a href={sevillaCenterUrl} target="_blank" rel="noopener noreferrer">
           {sevillaCenterUrl}  
-        </a>.
+        </a>. ¡Pero te avisamos de que este está un poco más lejos!
       </p>
       <p>
-        Las habitaciones son un bien finito, así que, si te interesa, ¡te aconsejamos que&nbsp;
-        te des prisa!
+        Las habitaciones son un bien finito, así que, si te interesa, ¡te aconsejamos que te des prisa!
       </p>
     </div>
   );
