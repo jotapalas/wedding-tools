@@ -138,7 +138,7 @@ function AttendanceForm({ className, onClose = null }) {
                         {value: true, label: 'Sí'},
                         {value: false, label: 'No'},
                     ], horizontal: true, required: true},
-                    { name: 'needs_accommodation', type: 'select', label: '¿Necesitas alojamiento?', options: [
+                    { name: 'needs_accommodation', type: 'select', label: '¿Necesitas info sobre alojamiento?', options: [
                         {value: true, label: 'Sí'},
                         {value: false, label: 'No'},
                     ], horizontal: true},
