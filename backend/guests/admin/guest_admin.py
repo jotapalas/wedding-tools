@@ -29,7 +29,7 @@ class GuestAdmin(admin.ModelAdmin):
     )
     ordering = (
         '-attending',
-        'updated_at',
+        '-updated_at',
         'first_name',
         'last_name',
     )
