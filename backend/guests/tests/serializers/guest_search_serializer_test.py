@@ -13,7 +13,6 @@ class GuestSearchSerializerTestCase(TestCase):
         serializer = GuestSearchSerializer(data={
             'first_name': self.guest.first_name,
             'last_name': self.guest.last_name,
-            'nickname': self.guest.nickname,
         })
         self.assertTrue(serializer.is_valid(), serializer.errors)
         self.assertEqual(list(serializer.search()), [self.guest])
@@ -34,7 +33,7 @@ class GuestSearchSerializerTestCase(TestCase):
 
     def test_search_with_nickname(self):
         serializer = GuestSearchSerializer(data={
-            'nickname': self.guest.nickname,
+            'first_name': self.guest.nickname,
         })
         self.assertTrue(serializer.is_valid(), serializer.errors)
         self.assertEqual(list(serializer.search()), [self.guest])
@@ -64,7 +63,7 @@ class GuestSearchSerializerTestCase(TestCase):
 
     def test_with_incomplete_nickname(self):
         serializer = GuestSearchSerializer(data={
-            'nickname': self.guest.nickname[:3],
+            'first_name': self.guest.nickname[:3],
         })
         self.assertTrue(serializer.is_valid(), serializer.errors)
         self.assertEqual(list(serializer.search()), [self.guest])

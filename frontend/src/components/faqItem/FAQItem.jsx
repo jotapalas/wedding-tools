@@ -1,8 +1,11 @@
 import './FAQItem.css';
 
-import { useState } from 'react';
+import moodboard from '../../img/moodboard.png';
 
-function FAQItem({ question, answer }) {
+import { useState } from 'react';
+import AccommodationInfo from '../accommodationInfo/AccommodationInfo';
+
+function FAQItem({ question, answer, include_moodboard, include_accommodation }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAnswer = () => {
@@ -19,7 +22,11 @@ function FAQItem({ question, answer }) {
           {isOpen ? '-' : '+'}
         </span>
       </div>
-      <div className={`faq-answer${isOpen ? '' : ' hidden'}`}>{answer}</div>
+      <div className={`faq-answer${isOpen ? '' : ' hidden'}`}>
+        <p>{answer}</p>
+        {include_moodboard && (<img className="moodboard" src={moodboard} alt="Un poco de inspiración" />)}
+        {include_accommodation && <AccommodationInfo />}
+      </div>
     </div>
   );
 }

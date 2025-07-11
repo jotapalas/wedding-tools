@@ -6,6 +6,7 @@ import Attendance from './sections/Attendance/Attendance';
 import Directions from './sections/Directions/Directions';
 import FAQ from './sections/FAQ/FAQ';
 import Gifts from './sections/Gifts/Gifts';
+import Footer from './sections/Footer/Footer';
 
 import discoBall from './img/discoball.png';
 
@@ -27,6 +28,7 @@ function App() {
       <Directions />
       <FAQ />
       <Gifts />
+      <Footer />
     </div>
   );
 }

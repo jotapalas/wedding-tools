@@ -50,7 +50,7 @@ function LineUp() {
     {
       time: '05:30',
       title: 'Back to Guagua',
-      subtitle: 'Quién le ha dicho usted que quiero que conduzcan por mí',
+      subtitle: 'Quién le ha dicho a usted que quiero que conduzcan por mí',
       image: endgame,
       altText: 'Buenas noches, hasta mañana',
     },

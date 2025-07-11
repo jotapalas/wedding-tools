@@ -1,13 +1,16 @@
 import './AttendanceForm.css';
 import ApiForm from '../apiForm/ApiForm';
+import AddToCalendarButton from '../addToCalendarButton/AddToCalendarButton';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 import SectionTitle from '../sectionTitle/SectionTitle';
 import Guest from '../guest/Guest';
+import AccommodationInfo from '../accommodationInfo/AccommodationInfo';
 
-function AttendanceForm({ className }) {
+
+function AttendanceForm({ className, onClose = null }) {
     const [currentGuest, setCurrentGuest] = useState();
     const [loading, setLoading] = useState(true);
     const [stage, setStage] = useState(1);
@@ -38,6 +41,16 @@ function AttendanceForm({ className }) {
         setCurrentGuest(guest);
         setStage(3);
     }
+
+    const handleFinish = () => {
+        const isAttending = currentGuest.attending === 1;
+        const nextStage = isAttending ? 5 : 1;
+        if (!isAttending && onClose) {
+            onClose();
+            return;
+        }
+        setStage(nextStage);
+    };
 
     let content = <div className="loading">Loading...</div>;
     
@@ -122,12 +135,12 @@ function AttendanceForm({ className }) {
                     ], horizontal: true},
                     { name: 'allergies', type: 'text', label: 'Alergias' },
                     { name: 'needs_transport', type: 'select', label: '¿Necesitas autobús?', options: [
-                        {value: 1, label: 'Sí'},
-                        {value: 0, label: 'No'},
+                        {value: true, label: 'Sí'},
+                        {value: false, label: 'No'},
                     ], horizontal: true, required: true},
-                    { name: 'needs_accommodation', type: 'select', label: '¿Necesitas alojamiento?', options: [
-                        {value: 1, label: 'Sí'},
-                        {value: 0, label: 'No'},
+                    { name: 'needs_accommodation', type: 'select', label: '¿Necesitas info sobre alojamiento?', options: [
+                        {value: true, label: 'Sí'},
+                        {value: false, label: 'No'},
                     ], horizontal: true},
                     { name: 'pre_wedding', type: 'select', label: '¿Te apuntas a la preboda?', options: [
                         {value: 1, label: 'Sí'},
@@ -147,9 +160,15 @@ function AttendanceForm({ className }) {
                 {
                     currentGuest.attending === 1
                     ? '¡Nos vemos en la boda!'
-                    : '¡Ooooh! Pues nos vemos en los bares'
+                    : '¡Ooooh! ¡Pues nos vemos en los bares!'
                 }
             </h3>
+            {
+                currentGuest.attending === 1 &&
+                <div className="add-to-calendar-container">
+                    <AddToCalendarButton />
+                </div>
+            }
             {
                 currentGuest.same_group_guests.length > 0
                 ? <div className="same-group-guests">
@@ -163,20 +182,19 @@ function AttendanceForm({ className }) {
                         setGuests(currentGuest.same_group_guests);
                         setStage(2);
                     }}>Sí</button>
-                    <button onClick={() => {
-                        setStage(5);
-                        setGuests();
-                    }}>No, terminar</button>
+                    <button onClick={() => handleFinish()}>No, terminar</button>
                 </div>
-                : <button onClick={() => setStage(5)}>
+                : <button onClick={() => {handleFinish()}}>
                     Terminar
                 </button>
             }
         </div>;
     } else if (stage === 5) {
         const spotifyUrl = import.meta.env.VITE_SPOTIFY_PLAYLIST_URL;
-        console.log(spotifyUrl);
         if (!spotifyUrl) {
+            if (onClose) {
+                onClose();
+            }
             setStage(1);
             return;
         }
@@ -195,6 +213,14 @@ function AttendanceForm({ className }) {
             }}>
                 ¡Por supuesto!
             </button>
+
+            {
+                currentGuest.needs_accommodation === true &&
+                <div className="accomodation-info-container">
+                    <SectionTitle title="Sobre el alojamiento" />
+                    <AccommodationInfo />
+                </div>
+            }
         </div>;
     }
 

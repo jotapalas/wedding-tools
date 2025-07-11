@@ -9,6 +9,16 @@ class FAQ(UUIDModel, TimestampModel):
 
     question = models.CharField(max_length=255, verbose_name=_("Question"))
     answer = models.TextField(verbose_name=_("Answer"))
+    include_moodboard = models.BooleanField(
+        default=False,
+        verbose_name=_("Include moodboard"),
+        help_text=_("Include the moodboard in this FAQ"),
+    )
+    include_accommodation = models.BooleanField(
+        default=False,
+        verbose_name=_("Include accommodation"),
+        help_text=_("Include the accommodation in this FAQ"),
+    )
     order = models.PositiveIntegerField(
         default=0, verbose_name=_("Order"), help_text=_("Order of the FAQ")
     )

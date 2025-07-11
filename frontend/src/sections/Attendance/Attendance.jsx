@@ -26,7 +26,6 @@ function Attendance() {
 
   const toggleForm = () => {
     const newShowForm = !showForm;
-    console.log('toggleForm', newShowForm);
     setShowForm(newShowForm);
     if (newShowForm) {
       blockScroll();
@@ -43,7 +42,7 @@ function Attendance() {
         <div className="attendance-form-close" onClick={() => toggleForm()}>
           <p>X</p>
         </div>
-        <AttendanceForm />
+        <AttendanceForm onClose={toggleForm} />
       </div>
       <div className="attendance-content">
         <p>

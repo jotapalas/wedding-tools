@@ -26,7 +26,10 @@ function FAQ() {
       <SectionTitle title="FAQ" />
       <div className="faq-content">
         {questions.map((item) => (
-          <FAQItem key={item.id} question={item.question} answer={item.answer} />
+          <FAQItem
+            key={item.id}
+            {...item}
+          />
         ))}
       </div>
     </section>

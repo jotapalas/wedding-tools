@@ -2,10 +2,10 @@ import './Hero.css';
 
 import { useState, useEffect } from 'react';
 
-import mobileBanner from '../../img/mobile-banner.svg';
-import desktopBanner from '../../img/desktop-banner.svg';
+import mobileBanner from '../../img/banner-mobile.png';
+import desktopBanner from '../../img/banner-desktop.png';
 
-function Hero() { 
+function Hero() {
   const [width, setWidth] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(width <= 768);
   
@@ -22,7 +22,10 @@ function Hero() {
     };
   }, []);
 
-  const banner = isMobile ? mobileBanner : desktopBanner;
+  let banner = desktopBanner;
+  if (isMobile) {
+    banner = mobileBanner;
+  }
 
   return (
     <section className="hero">
